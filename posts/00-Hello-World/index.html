@@ -1,0 +1,37 @@
+<html lang='pt-br'>
+  <head>
+    <meta charset='utf-8'>
+    <title>Fortran Blog</title>
+
+    <link rel='stylesheet' href='../../styles/posts.css'>
+    <script src='script.js' defer></script>
+  </head>
+  <header></header>
+  <body>
+    <header>
+      <H1>Title</H1>
+      <H2>subtitle</H2>
+    </header>
+    <article>
+    
+    <div class='left-bar'>
+      Seções
+      <ol>
+	<li>teste</li>
+      </ol>
+    </div>
+
+    <div class='content'>
+      <p>
+        A principal modificação feita para o funcionamento do gerador foi o suporte a concordância sintática, o que não pode ser feito de maneira trivial com uma GLC pura. Por exemplo, dados um conjunto de substantivos, e.g. SUBSTANTIVO = {"bola", "árvore", "pássaros"} e um conjunto de artigos, e.g. ARTIGO = {"um", "o", "as", "uma"}, como combinar os dois de forma a ter uma expressão bem-formada? Uma possível GLC ingênua seria:[suj_simples]-->[artigo] [substantivo][artigo]--> um | o | as | uma[substantivo]--> bola | árvore | pássarosMas esta regra não seria satisfatória, pois, escolhendo sem critério os terminais, geraria expressões mal-formadas como "o bola" ou "as pássaros".A abordagem tomada para resolver este problema foi de inserir "anáforas"[3] (um pequeno abuso de notação) nas variáveis, de forma que há variáveis determinantes ("fortes") e variáveis determinadas ("fracas"). Primeiro resolve-se completamente todas as variáveis fortes duma regra (ao contrário do que poderia exigir uma derivação fixa numa única direção, como é de costume em GLCs) para em seguida resolver as fracas, passando como parâmetros as conjugações apropriadas, e.g.:[suj_simples x]-->[artigo_def(x)] [substantivo x][artigo]--> um (numero:S) | o (numero:S genero:M) | as (numero:P genero:F) | uma (genero:F)[substantivo]--> bola (numero:S genero:F) | árvore (numero:S genero:F) | pássaros (numero:P genero:M)Nesta regra, a variável substantivo será resolvida primeiro, e sua conjugação será armazenada na variável x. Essa variável então será passada como argumento à variável artigo_def, de forma que uma expressão bem-formada resultará da regra.
+      </p>
+    </div>
+
+    <div class='right-field'>
+      <div class='author'>Gustavo</div>
+    </div>
+    
+    </article>
+  </body>
+  <footer><footer>
+</html>
